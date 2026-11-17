@@ -1,0 +1,1602 @@
+/* ==========================================================================
+   TABLE OF CONTENTS
+   ==========================================================================
+   1. CSS RESET & GLOBAL ROOT VARIABLES (Color Palette, Fonts, Shadows)
+   2. ELEMENT SELECTORS (html, body, headings, links, typography)
+   3. ACCESSIBILITY & FOCUS STYLES (:focus-visible, reduced-motion)
+   4. LAYOUT UTILITIES & CONTAINERS (.container, .section-padding)
+   5. HEADER & NAVIGATION BAR (ID #site-header, #main-nav, .navbar)
+   6. HERO / OPENING SECTION (ID #hero, .hero-section, avatar monogram)
+   7. REUSABLE CARD & BADGE COMPONENTS (.card, .badge, buttons)
+   8. SECTION: ABOUT ME (ID #about, highlights grid)
+   9. SECTION: EDUCATION (ID #education, academic cards, grade boxes)
+   10. SECTION: EXPERIENCE & VOLUNTEERING (ID #experience, event badges)
+   11. SECTION: CERTIFICATIONS (ID #certifications, credential cards)
+   12. SECTION: SKILLS (ID #skills, 4-grid capability cards)
+   13. SECTION: CONTACT (ID #contact, address grid, interaction pills)
+   14. FOOTER (ID #site-footer, #roll-number-container)
+   15. MEDIA QUERIES (Responsive layouts for Tablet and Mobile)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CSS RESET & GLOBAL ROOT VARIABLES
+   Demonstrates: CSS Custom Properties (Variables) for consistency and theme
+   ========================================================================== */
+:root {
+  /* Warm Ivory Background Palette */
+  --color-bg-ivory: #FAF7F2;       /* Base warm ivory background */
+  --color-bg-alt: #F3ECE1;         /* Complementary warm cream for section contrast */
+  --color-bg-card: #FFFFFF;        /* Crisp white card surface */
+  --color-bg-tint-teal: #EDF6F5;   /* Very gentle teal tint for featured cards */
+  --color-bg-tint-gold: #FDF9EE;   /* Very gentle gold tint for academic badges */
+
+  /* Deep Navy Typography & Accents */
+  --color-navy-dark: #0B192C;      /* Deepest navy for primary headings and footer */
+  --color-navy-medium: #152942;    /* Medium navy for subheadings and card titles */
+  --color-text-main: #213547;      /* High-contrast readable body text */
+  --color-text-muted: #56697D;     /* Muted navy-gray for metadata and dates */
+
+  /* Teal Accent Palette */
+  --color-teal: #0D7C75;           /* Primary vibrant teal accent */
+  --color-teal-hover: #085752;     /* Darker teal for hover states */
+  --color-teal-light: #E4F3F1;     /* Soft teal pill background */
+  --color-teal-border: #9DD0CB;    /* Subtle teal borders */
+
+  /* Muted Gold Accent Palette */
+  --color-gold: #C5941E;           /* Sophisticated muted gold */
+  --color-gold-hover: #9E7412;     /* Deeper gold for active states */
+  --color-gold-light: #FBF3DC;     /* Soft gold badge background */
+  --color-gold-border: #E8D296;    /* Gentle gold border */
+
+  /* Borders and Shadows */
+  --color-border-subtle: #E8E0D2;  /* Warm ivory-toned card borders */
+  --shadow-subtle: 0 4px 16px rgba(11, 25, 44, 0.05);
+  --shadow-medium: 0 8px 26px rgba(11, 25, 44, 0.08);
+  --shadow-hover: 0 14px 34px rgba(13, 124, 117, 0.14);
+
+  /* Typography Families (Humanist) */
+  --font-headings: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing & Layout Tokens */
+  --nav-height: 74px;
+  --max-width: 1140px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --transition-smooth: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Universal box-sizing reset for reliable layout calculations */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ==========================================================================
+   2. ELEMENT SELECTORS
+   Demonstrates: Pure HTML element styling (html, body, headings, p, a, etc.)
+   ========================================================================== */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth; /* Smooth scrolling when clicking anchor links */
+  scroll-padding-top: calc(var(--nav-height) + 16px); /* Prevents sticky nav from overlapping section headers */
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-ivory);
+  color: var(--color-text-main);
+  line-height: 1.68;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headings);
+  color: var(--color-navy-dark);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-teal);
+  text-decoration: none;
+  transition: color var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-teal-hover);
+}
+
+ul {
+  list-style: none;
+}
+
+address {
+  font-style: normal;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--color-navy-dark);
+}
+
+
+/* ==========================================================================
+   3. ACCESSIBILITY & FOCUS STYLES
+   Demonstrates: WCAG compliant focus visible and reduced motion respect
+   ========================================================================== */
+:focus-visible {
+  outline: 3px solid var(--color-teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Honor operating system user settings for reduced animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================================
+   4. LAYOUT UTILITIES & CONTAINERS
+   Demonstrates: Reusable class selectors for modular CSS design
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Complementary section background variations to prevent monotony */
+.section-about {
+  background-color: var(--color-bg-ivory);
+}
+
+.section-education {
+  background-color: var(--color-bg-alt); /* Soft complementary cream */
+}
+
+.section-experience {
+  background-color: var(--color-bg-ivory);
+}
+
+.section-certifications {
+  background-color: var(--color-bg-tint-teal); /* Gentle teal-tinted background */
+}
+
+.section-skills {
+  background-color: var(--color-bg-alt); /* Soft complementary cream */
+}
+
+.section-contact {
+  background-color: var(--color-bg-ivory);
+}
+
+/* Section Header Styling */
+.section-header {
+  margin-bottom: 3.25rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-teal);
+  background-color: var(--color-teal-light);
+  border: 1px solid var(--color-teal-border);
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  color: var(--color-navy-dark);
+  letter-spacing: -0.5px;
+}
+
+.section-divider {
+  width: 56px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-teal), var(--color-gold));
+  margin: 1rem auto 0;
+  border-radius: var(--radius-full);
+}
+
+
+/* ==========================================================================
+   5. HEADER & NAVIGATION BAR
+   Demonstrates: ID selector #site-header, #main-nav, CSS Flexbox & Sticky Pos
+   ========================================================================== */
+#site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(250, 247, 242, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: box-shadow var(--transition-smooth);
+}
+
+.navbar {
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Logo with Monogram */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-headings);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-navy-dark);
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--color-navy-dark), var(--color-teal));
+  color: #FFFFFF;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(13, 124, 117, 0.25);
+  border: 1px solid rgba(197, 148, 30, 0.5); /* Touch of muted gold */
+}
+
+.brand-name {
+  color: var(--color-navy-dark);
+  letter-spacing: -0.2px;
+}
+
+/* Navigation Links Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.nav-link {
+  font-family: var(--font-headings);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-navy-medium);
+  padding: 0.5rem 0.25rem;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-teal);
+  transition: width var(--transition-smooth);
+  border-radius: var(--radius-full);
+}
+
+.nav-link:hover {
+  color: var(--color-teal);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Call-to-Action Link in Navbar */
+.nav-cta {
+  background-color: var(--color-teal);
+  color: #FFFFFF !important;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-smooth);
+  box-shadow: 0 3px 10px rgba(13, 124, 117, 0.2);
+}
+
+.nav-cta::after {
+  display: none;
+}
+
+.nav-cta:hover {
+  background-color: var(--color-teal-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(13, 124, 117, 0.3);
+}
+
+
+/* ==========================================================================
+   6. HERO / OPENING SECTION
+   Demonstrates: ID selector #hero, CSS Flexbox / 2-Column Desktop Grid
+   ========================================================================== */
+#hero {
+  padding-top: 4.5rem;
+  padding-bottom: 5rem;
+  background: radial-gradient(circle at 85% 15%, rgba(197, 148, 30, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 10% 80%, rgba(13, 124, 117, 0.06) 0%, transparent 40%),
+              var(--color-bg-ivory);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3.5rem;
+}
+
+.hero-text-content {
+  flex: 1 1 58%;
+}
+
+.hero-visual-card {
+  flex: 1 1 42%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Status Pill in Hero */
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-navy-dark);
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-gold-border);
+  box-shadow: var(--shadow-subtle);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.25rem;
+}
+
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-gold);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hero-title {
+  font-size: 3.35rem;
+  font-weight: 900;
+  color: var(--color-navy-dark);
+  letter-spacing: -1.2px;
+  margin-bottom: 0.6rem;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.28rem;
+  font-weight: 600;
+  color: var(--color-teal);
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  max-width: 580px;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+/* Hero Action Buttons */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-headings);
+  font-size: 0.96rem;
+  font-weight: 700;
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-teal);
+  color: #FFFFFF;
+  border: 1px solid var(--color-teal);
+  box-shadow: 0 4px 14px rgba(13, 124, 117, 0.28);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-teal-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13, 124, 117, 0.35);
+}
+
+.btn-secondary {
+  background-color: #FFFFFF;
+  color: var(--color-navy-dark);
+  border: 1.5px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-subtle);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Hero Quick Contact Strip */
+.hero-quick-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.quick-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+}
+
+.qc-icon {
+  font-size: 1.05rem;
+  color: var(--color-teal);
+}
+
+.quick-contact-item a {
+  color: var(--color-navy-dark);
+  font-weight: 600;
+}
+
+.quick-contact-item a:hover {
+  color: var(--color-teal);
+  text-decoration: underline;
+}
+
+/* Initials-based Profile Avatar Card */
+.avatar-card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+}
+
+.avatar-halo {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+  background: linear-gradient(135deg, rgba(13, 124, 117, 0.15), rgba(197, 148, 30, 0.18));
+  border-radius: var(--radius-lg);
+  filter: blur(12px);
+  z-index: 1;
+}
+
+.avatar-card {
+  position: relative;
+  z-index: 2;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-medium);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.avatar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Polished Initials Monogram Badge */
+.initials-avatar {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #0B192C 0%, #152E4E 50%, #0D7C75 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(11, 25, 44, 0.2);
+  border: 4px solid #FFFFFF;
+  outline: 3px solid var(--color-gold); /* Muted gold highlight */
+}
+
+.avatar-letters {
+  font-family: var(--font-headings);
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.avatar-card-name {
+  font-size: 1.45rem;
+  color: var(--color-navy-dark);
+  margin-bottom: 0.35rem;
+}
+
+.avatar-card-role {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-teal);
+  margin-bottom: 0.25rem;
+}
+
+.avatar-card-inst {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.avatar-card-badges {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.status-tag {
+  font-size: 0.76rem;
+  font-weight: 700;
+  background-color: var(--color-teal-light);
+  color: var(--color-teal);
+  border: 1px solid var(--color-teal-border);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+.gold-tag {
+  background-color: var(--color-gold-light);
+  color: var(--color-gold-hover);
+  border-color: var(--color-gold-border);
+}
+
+
+/* ==========================================================================
+   7. REUSABLE CARD & BADGE STYLES
+   Demonstrates: Class selectors .card, hover states, rounded corners, shadows
+   ========================================================================== */
+.card {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-medium);
+  border-color: var(--color-teal-border);
+}
+
+
+/* ==========================================================================
+   8. SECTION: ABOUT ME
+   Demonstrates: Semantic <article>, class selectors, Grid / Flex layout
+   ========================================================================== */
+.about-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-main-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
+}
+
+.card-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-teal), var(--color-gold));
+}
+
+.card-inner-body {
+  padding: 2.5rem;
+}
+
+.about-lead-heading {
+  font-size: 1.35rem;
+  color: var(--color-navy-dark);
+  margin-bottom: 1rem;
+}
+
+.about-lead-text {
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--color-navy-dark);
+}
+
+/* 3 Mini Highlight Cards */
+.about-highlights-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.highlight-mini-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-mini-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-teal-border);
+}
+
+.mini-card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mini-card-title {
+  font-size: 1.15rem;
+  color: var(--color-navy-dark);
+  margin-bottom: 0.5rem;
+}
+
+.mini-card-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   9. SECTION: EDUCATION
+   Demonstrates: Class selectors, grid columns, grade metric boxes
+   ========================================================================== */
+.education-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.edu-card {
+  padding: 2.25rem;
+  border-radius: var(--radius-lg);
+  border-left: 6px solid var(--color-teal); /* Teal accent bar */
+}
+
+.featured-edu-card {
+  background-color: #FFFFFF;
+  border-left-color: var(--color-gold); /* Muted gold accent bar for IIMB */
+  box-shadow: var(--shadow-medium);
+}
+
+.edu-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.edu-level-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-gold-hover);
+  background-color: var(--color-gold-light);
+  border: 1px solid var(--color-gold-border);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.6rem;
+}
+
+.secondary-badge {
+  color: var(--color-teal);
+  background-color: var(--color-teal-light);
+  border-color: var(--color-teal-border);
+}
+
+.edu-degree {
+  font-size: 1.38rem;
+  color: var(--color-navy-dark);
+  margin-bottom: 0.35rem;
+}
+
+.edu-institution {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-teal);
+}
+
+.edu-date-badge {
+  background-color: var(--color-bg-ivory);
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-navy-dark);
+  white-space: nowrap;
+}
+
+.edu-description {
+  font-size: 1rem;
+  color: var(--color-text-main);
+  margin-bottom: 1.25rem;
+  line-height: 1.65;
+}
+
+.edu-highlights-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.edu-pill {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-navy-dark);
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+}
+
+/* High School Grades Grid */
+.grades-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.grade-box {
+  background-color: var(--color-bg-ivory);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  transition: all var(--transition-smooth);
+}
+
+.grade-box:hover {
+  background-color: #FFFFFF;
+  border-color: var(--color-teal-border);
+  box-shadow: var(--shadow-subtle);
+  transform: translateY(-2px);
+}
+
+.grade-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.grade-value {
+  display: block;
+  font-family: var(--font-headings);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--color-navy-dark);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.grade-year {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   10. SECTION: EXPERIENCE & VOLUNTEERING
+   Demonstrates: Experience timeline layout, metadata badges, responsibility list
+   ========================================================================== */
+.experience-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.experience-card {
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
+}
+
+.exp-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.exp-role-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-teal);
+  background-color: var(--color-teal-light);
+  border: 1px solid var(--color-teal-border);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.6rem;
+}
+
+.exp-role-title {
+  font-size: 1.5rem;
+  color: var(--color-navy-dark);
+  margin-bottom: 0.3rem;
+}
+
+.exp-company {
+  font-size: 1.15rem;
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+.exp-event-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.exp-event-name {
+  font-weight: 700;
+  color: var(--color-navy-dark);
+}
+
+.exp-divider {
+  height: 1px;
+  background-color: var(--color-border-subtle);
+  margin: 1.75rem 0;
+}
+
+.exp-subheading {
+  font-size: 1.05rem;
+  color: var(--color-navy-dark);
+  margin-bottom: 1rem;
+}
+
+.exp-points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.exp-points-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--color-text-main);
+}
+
+.exp-points-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--color-teal);
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+.exp-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--color-border-subtle);
+}
+
+.exp-tag {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-navy-dark);
+  background-color: var(--color-bg-ivory);
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+}
+
+
+/* ==========================================================================
+   11. SECTION: CERTIFICATIONS
+   Demonstrates: CSS Grid 2-column layout, credential styling
+   ========================================================================== */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.cert-card {
+  padding: 2.25rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: all var(--transition-smooth);
+}
+
+.cert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-teal);
+}
+
+.cert-icon-wrapper {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  background-color: var(--color-teal-light);
+  border: 1px solid var(--color-teal-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-icon {
+  font-size: 1.75rem;
+}
+
+.cert-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-teal);
+  background-color: var(--color-teal-light);
+  border: 1px solid var(--color-teal-border);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.6rem;
+}
+
+.cert-badge-gold {
+  color: var(--color-gold-hover);
+  background-color: var(--color-gold-light);
+  border-color: var(--color-gold-border);
+}
+
+.cert-title {
+  font-size: 1.3rem;
+  color: var(--color-navy-dark);
+  margin-bottom: 0.2rem;
+}
+
+.cert-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-teal);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.cert-provider {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--color-navy-medium);
+  margin-bottom: 0.25rem;
+}
+
+.cert-meta {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 0.85rem;
+}
+
+.cert-description {
+  font-size: 0.92rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   12. SECTION: SKILLS
+   Demonstrates: CSS Grid 2x2 or 4-card layout, interactive hover cards
+   ========================================================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+
+.skill-card {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 4px solid var(--color-teal);
+  transition: all var(--transition-smooth);
+}
+
+.skill-card:nth-child(2) {
+  border-top-color: var(--color-gold); /* Alternating gold top border */
+}
+
+.skill-card:nth-child(4) {
+  border-top-color: var(--color-gold);
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.skill-card-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.skill-icon-box {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-bg-ivory);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.skill-name {
+  font-size: 1.25rem;
+  color: var(--color-navy-dark);
+}
+
+.skill-detail {
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-navy-dark);
+  background-color: var(--color-bg-ivory);
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+}
+
+
+/* ==========================================================================
+   13. SECTION: CONTACT
+   Demonstrates: Semantic <address>, contact channels, interactive action cards
+   ========================================================================== */
+.contact-card-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.contact-main-card {
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-medium);
+}
+
+.contact-intro {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+}
+
+.contact-heading {
+  font-size: 1.75rem;
+  color: var(--color-navy-dark);
+  margin-bottom: 0.75rem;
+}
+
+.contact-subheading {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+.contact-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.contact-channel-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--color-bg-ivory);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-smooth);
+}
+
+a.contact-channel-card:hover {
+  background-color: #FFFFFF;
+  border-color: var(--color-teal);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.channel-icon-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--color-teal-light);
+  border: 1px solid var(--color-teal-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--color-teal);
+  flex-shrink: 0;
+}
+
+.channel-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.channel-type {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.channel-value {
+  font-size: 0.98rem;
+  color: var(--color-navy-dark);
+  word-break: break-all;
+}
+
+
+/* ==========================================================================
+   14. FOOTER
+   Demonstrates: ID selector #site-footer, #roll-number-container,
+   neatly presents the college roll number: IIMBDBE2673600
+   ========================================================================== */
+#site-footer {
+  background-color: var(--color-navy-dark);
+  color: #ECEFF4;
+  padding-top: 3.5rem;
+  padding-bottom: 2.5rem;
+  border-top: 4px solid var(--color-gold); /* Prominent muted gold line */
+}
+
+.footer-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  max-width: 520px;
+}
+
+.footer-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--color-teal), var(--color-navy-medium));
+  color: #FFFFFF;
+  border: 1px solid var(--color-gold);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.footer-name {
+  font-family: var(--font-headings);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.2px;
+}
+
+.footer-bio {
+  font-size: 0.9rem;
+  color: #B2C0D0;
+  line-height: 1.5;
+}
+
+/* College Assignment Roll Number Container */
+#roll-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid var(--color-gold);
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.roll-number-label {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: 0.2rem;
+}
+
+.roll-number-code {
+  font-family: var(--font-headings);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: 1.5px;
+}
+
+.footer-divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.12);
+  margin: 2.25rem 0 1.75rem;
+}
+
+.footer-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  font-size: 0.86rem;
+  color: #94A3B8;
+  flex-wrap: wrap;
+}
+
+.footer-copyright {
+  max-width: 650px;
+}
+
+.back-to-top-link {
+  font-family: var(--font-headings);
+  font-weight: 700;
+  color: var(--color-gold);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(197, 148, 30, 0.4);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-smooth);
+}
+
+.back-to-top-link:hover {
+  background-color: var(--color-gold);
+  color: var(--color-navy-dark);
+}
+
+
+/* ==========================================================================
+   15. MEDIA QUERIES
+   Demonstrates: Responsive Breakpoints for Tablet & Mobile screens
+   ========================================================================== */
+
+/* Tablet Screens (max-width: 991px) */
+@media screen and (max-width: 991px) {
+  :root {
+    --nav-height: 68px;
+  }
+
+  .hero-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .hero-text-content {
+    flex: 1 1 100%;
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-quick-contact {
+    align-items: center;
+  }
+
+  .about-highlights-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #roll-number-container {
+    align-items: flex-start;
+  }
+}
+
+/* Mobile Screens (max-width: 640px) */
+@media screen and (max-width: 640px) {
+  .section-padding {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .navbar {
+    height: auto;
+    padding: 0.75rem 0;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem 1.25rem;
+  }
+
+  .nav-link {
+    font-size: 0.88rem;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .initials-avatar {
+    width: 110px;
+    height: 110px;
+  }
+
+  .avatar-letters {
+    font-size: 2.25rem;
+  }
+
+  .about-highlights-row {
+    grid-template-columns: 1fr;
+  }
+
+  .card-inner-body {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .edu-card {
+    padding: 1.5rem;
+  }
+
+  .grades-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .exp-event-meta {
+    align-items: flex-start;
+  }
+
+  .contact-main-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .contact-items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
+   16. PRINT STYLESHEET
+   Demonstrates: @media print optimization for clean A4 printing
+   ========================================================================== */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  #site-header,
+  .hero-actions,
+  .back-to-top-link,
+  .avatar-halo {
+    display: none !important;
+  }
+
+  .hero-section {
+    padding-top: 1rem !important;
+    padding-bottom: 1.5rem !important;
+    background: none !important;
+    border-bottom: 1px solid #CCCCCC !important;
+  }
+
+  .section-padding {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    page-break-inside: avoid;
+  }
+
+  .card,
+  .edu-card,
+  .experience-card,
+  .cert-card,
+  .skill-card,
+  .contact-main-card {
+    box-shadow: none !important;
+    border: 1px solid #DDDDDD !important;
+    background-color: #FFFFFF !important;
+    page-break-inside: avoid;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: underline;
+  }
+
+  #site-footer {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border-top: 2px solid #000000 !important;
+    padding: 1.5rem 0 !important;
+  }
+
+  #roll-number-container {
+    border: 1.5px solid #000000 !important;
+    background: none !important;
+  }
+
+  .roll-number-code {
+    color: #000000 !important;
+  }
+
+  .footer-copyright {
+    color: #444444 !important;
+  }
+}

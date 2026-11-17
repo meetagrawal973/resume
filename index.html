@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal academic and professional resume website of Meet Agarwal - BBA in Digital Business & Entrepreneurship at IIM Bangalore.">
+  <meta name="author" content="Meet Agarwal">
+  <title>Meet Agarwal | Personal Resume Website</title>
+
+  <!-- Google Fonts: Humanist typography (Lato & Open Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       HEADER & NAVIGATION BAR
+       Demonstrates: semantic <header>, <nav>, and CSS ID #site-header
+       ========================================================= -->
+  <header id="site-header">
+    <nav id="main-nav" class="navbar" aria-label="Main Navigation">
+      <div class="nav-container">
+        
+        <!-- Brand Logo / Monogram -->
+        <a href="#hero" class="nav-brand" aria-label="Meet Agarwal Home">
+          <span class="brand-badge">MA</span>
+          <span class="brand-name">Meet Agarwal</span>
+        </a>
+
+        <!-- Desktop Navigation Links (Smooth jump links to sections) -->
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+          <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+          <li class="nav-item"><a href="#certifications" class="nav-link">Certifications</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link nav-cta">Contact</a></li>
+        </ul>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- =========================================================
+       MAIN CONTENT CONTAINER
+       Demonstrates: semantic <main> enclosing all core content sections
+       ========================================================= -->
+  <main id="main-content">
+
+    <!-- =======================================================
+         HERO / OPENING SECTION
+         Demonstrates: ID selector #hero, Flexbox/Grid, Hero styling
+         ======================================================= -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        
+        <!-- Left Column: Introduction & Primary Links -->
+        <div class="hero-text-content">
+          <div class="eyebrow-pill">
+            <span class="pill-dot"></span>
+            IIM Bangalore &bull; BBA DBE Candidate
+          </div>
+          
+          <h1 class="hero-title">Meet Agarwal</h1>
+          
+          <p class="hero-subtitle">
+            Undergraduate Student in Digital Business &amp; Entrepreneurship
+          </p>
+
+          <p class="hero-description">
+            Passionate about startups, business strategy, and commercial operations. Combining academic rigor from IIM Bangalore with real-world customer engagement and trade networking experience.
+          </p>
+
+          <!-- Action Buttons / Section Links -->
+          <div class="hero-actions">
+            <a href="#about" class="btn btn-primary">Discover More &darr;</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+
+          <!-- Quick Contact Strip -->
+          <div class="hero-quick-contact">
+            <div class="quick-contact-item">
+              <span class="qc-icon" aria-hidden="true">&#9993;</span>
+              <a href="mailto:meetagrawal973@gmail.com?subject=Curious%20people%2C%20let's%20talk">meetagrawal973@gmail.com</a>
+            </div>
+            <div class="quick-contact-item">
+              <span class="qc-icon" aria-hidden="true">&#9742;</span>
+              <a href="tel:7850992709">+91 7850992709</a>
+            </div>
+            <div class="quick-contact-item">
+              <span class="qc-icon" aria-hidden="true">&#128205;</span>
+              <span>Jaipur, Rajasthan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Profile Avatar / Initials Visual Card -->
+        <div class="hero-visual-card">
+          <div class="avatar-card-wrapper">
+            <!-- Decorative halo accents -->
+            <div class="avatar-halo"></div>
+            
+            <div class="avatar-card">
+              <!-- Initials-based Profile Avatar -->
+              <div class="initials-avatar" aria-label="Meet Agarwal Initials Avatar">
+                <span class="avatar-letters">MA</span>
+              </div>
+              
+              <h2 class="avatar-card-name">Meet Agarwal</h2>
+              <p class="avatar-card-role">Digital Business &amp; Entrepreneurship</p>
+              <p class="avatar-card-inst">Indian Institute of Management, Bangalore</p>
+
+              <div class="avatar-card-badges">
+                <span class="status-tag">Class of 2029</span>
+                <span class="status-tag gold-tag">Jaipur, India</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         ABOUT ME SECTION
+         Demonstrates: semantic <section>, <article>, and class selectors
+         ======================================================= -->
+    <section id="about" class="section-padding section-about">
+      <div class="container">
+        
+        <div class="section-header text-center">
+          <span class="section-tag">Profile Overview</span>
+          <h2 class="section-title">About Me</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="about-grid">
+          
+          <!-- Primary Summary Card -->
+          <article class="card about-main-card">
+            <div class="card-accent-bar"></div>
+            <div class="card-inner-body">
+              <h3 class="about-lead-heading">Professional Summary</h3>
+              <p class="about-lead-text">
+                Ambitious undergraduate student pursuing Digital Business &amp; Entrepreneurship at <strong>IIM Bangalore</strong>, with a strong passion for startups, business strategy, and commercial operations. Backed by practical frontline experience in customer engagement and dealer networking at a national-level trade convention. Eager to leverage foundational business acumen and interpersonal skills in dynamic entrepreneurial environments.
+              </p>
+            </div>
+          </article>
+
+          <!-- 3 Value / Highlight Cards -->
+          <div class="about-highlights-row">
+            
+            <article class="highlight-mini-card">
+              <div class="mini-card-icon" aria-hidden="true">&#128640;</div>
+              <h4 class="mini-card-title">Startup &amp; Strategy</h4>
+              <p class="mini-card-desc">
+                Driven by a deep passion for digital business models, operational workflows, and commercial enterprise growth.
+              </p>
+            </article>
+
+            <article class="highlight-mini-card">
+              <div class="mini-card-icon" aria-hidden="true">&#129309;</div>
+              <h4 class="mini-card-title">Frontline Exposure</h4>
+              <p class="mini-card-desc">
+                Experienced in national trade conventions, engaging directly with commercial dealers, clients, and partners.
+              </p>
+            </article>
+
+            <article class="highlight-mini-card">
+              <div class="mini-card-icon" aria-hidden="true">&#128202;</div>
+              <h4 class="mini-card-title">Analytical Mindset</h4>
+              <p class="mini-card-desc">
+                Certified in data analytics and financial accounting, grounding strategic intuition in empirical metrics.
+              </p>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         EDUCATION SECTION
+         Demonstrates: Education cards, timeline styling, badge elements
+         ======================================================= -->
+    <section id="education" class="section-padding section-education">
+      <div class="container">
+
+        <div class="section-header text-center">
+          <span class="section-tag">Academic Pathway</span>
+          <h2 class="section-title">Education</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="education-grid">
+
+          <!-- Education Card 1: Higher Education (IIM Bangalore) -->
+          <article class="card edu-card featured-edu-card">
+            <div class="edu-card-header">
+              <div class="edu-institution-info">
+                <span class="edu-level-badge">Undergraduate Degree</span>
+                <h3 class="edu-degree">Bachelor of Business Administration in Digital Business &amp; Entrepreneurship (BBA DBE)</h3>
+                <h4 class="edu-institution">Indian Institute of Management, Bangalore (IIMB)</h4>
+              </div>
+              <div class="edu-date-badge">
+                <time datetime="2029">Expected Graduation: 2029</time>
+              </div>
+            </div>
+
+            <div class="edu-card-body">
+              <p class="edu-description">
+                Currently pursuing this specialized degree at one of India&rsquo;s apex management institutions, focusing on the intersection of modern digital technology, business strategy, entrepreneurial finance, and commercial market dynamics.
+              </p>
+              
+              <div class="edu-highlights-list">
+                <span class="edu-pill">Digital Business</span>
+                <span class="edu-pill">Entrepreneurship</span>
+                <span class="edu-pill">Commercial Operations</span>
+                <span class="edu-pill">Business Strategy</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Education Card 2: High School (Seeding Modern High School) -->
+          <article class="card edu-card">
+            <div class="edu-card-header">
+              <div class="edu-institution-info">
+                <span class="edu-level-badge secondary-badge">Secondary &amp; Senior Secondary</span>
+                <h3 class="edu-degree">CBSE Board Certification</h3>
+                <h4 class="edu-institution">Seeding Modern High School</h4>
+              </div>
+            </div>
+
+            <div class="edu-card-body">
+              <p class="edu-description">
+                Demonstrated consistent academic excellence throughout senior secondary and secondary education under the CBSE curriculum.
+              </p>
+
+              <!-- Grade Metric Cards -->
+              <div class="grades-grid">
+                <div class="grade-box">
+                  <span class="grade-label">Class 12 (CBSE)</span>
+                  <span class="grade-value">89.4%</span>
+                  <span class="grade-year">Year: 2026</span>
+                </div>
+
+                <div class="grade-box">
+                  <span class="grade-label">Class 10 (CBSE)</span>
+                  <span class="grade-value">89.0%</span>
+                  <span class="grade-year">Year: 2024</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         EXPERIENCE & VOLUNTEERING SECTION
+         Demonstrates: Experience showcase, event context, responsibilities
+         ======================================================= -->
+    <section id="experience" class="section-padding section-experience">
+      <div class="container">
+
+        <div class="section-header text-center">
+          <span class="section-tag">Industry &amp; Fieldwork</span>
+          <h2 class="section-title">Experience &amp; Volunteering</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="experience-wrapper">
+          <article class="card experience-card">
+            
+            <div class="exp-header-row">
+              <div class="exp-title-group">
+                <span class="exp-role-badge">Volunteer &amp; Brand Representative</span>
+                <h3 class="exp-role-title">Brand Representative &amp; Trade Liaison</h3>
+                <h4 class="exp-company">Shagun (Dry Fruit Brand)</h4>
+              </div>
+
+              <div class="exp-event-meta">
+                <span class="exp-event-name">All India Cashew Convention</span>
+                <span class="exp-location">&#128205; JECC, Jaipur</span>
+                <span class="exp-duration">&#128197; 3-Day National Event</span>
+              </div>
+            </div>
+
+            <div class="exp-divider"></div>
+
+            <div class="exp-body">
+              <h4 class="exp-subheading">Key Contributions &amp; Operational Exposure:</h4>
+              <ul class="exp-points-list">
+                <li>
+                  <strong>Customer &amp; Stakeholder Engagement:</strong> Actively engaged with retail customers, regional wholesale dealers, and corporate business stakeholders throughout the 3-day national convention.
+                </li>
+                <li>
+                  <strong>Commercial Operations Exposure:</strong> Gained direct, practical exposure to on-ground commercial trade logistics, product presentation, and premium dry-fruit brand positioning.
+                </li>
+                <li>
+                  <strong>B2B Networking &amp; Interpersonal Communication:</strong> Facilitated business-to-business (B2B) trade interactions, answered commercial inquiries, and supported dealer relationship building.
+                </li>
+              </ul>
+
+              <div class="exp-tags-container">
+                <span class="exp-tag">B2B Networking</span>
+                <span class="exp-tag">Dealer Relations</span>
+                <span class="exp-tag">Commercial Operations</span>
+                <span class="exp-tag">Customer Engagement</span>
+                <span class="exp-tag">Trade Conventions</span>
+              </div>
+            </div>
+
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         CERTIFICATIONS SECTION
+         Demonstrates: Grid layout, credential cards, authority verification
+         ======================================================= -->
+    <section id="certifications" class="section-padding section-certifications">
+      <div class="container">
+
+        <div class="section-header text-center">
+          <span class="section-tag">Accreditations</span>
+          <h2 class="section-title">Certifications</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="certifications-grid">
+
+          <!-- Certification 1: Data Analytics -->
+          <article class="card cert-card">
+            <div class="cert-icon-wrapper" aria-hidden="true">
+              <span class="cert-icon">&#128200;</span>
+            </div>
+            <div class="cert-content">
+              <span class="cert-badge">Analytics &amp; Data</span>
+              <h3 class="cert-title">Data Analytics Course</h3>
+              <h4 class="cert-provider">Tutedude</h4>
+              <p class="cert-meta">Completed: September 2026</p>
+              <p class="cert-description">
+                Comprehensive training covering data manipulation, analytical reasoning, metrics formulation, and visualization techniques for data-informed business decision making.
+              </p>
+            </div>
+          </article>
+
+          <!-- Certification 2: Accounts Executive Course -->
+          <article class="card cert-card">
+            <div class="cert-icon-wrapper" aria-hidden="true">
+              <span class="cert-icon">&#128218;</span>
+            </div>
+            <div class="cert-content">
+              <span class="cert-badge cert-badge-gold">Grade A Certification</span>
+              <h3 class="cert-title">Accounts Executive Course</h3>
+              <h4 class="cert-subtitle">(Tally &amp; Accounting, Grade A)</h4>
+              <h5 class="cert-provider">Samyak IT Solutions / NSDC Skill India</h5>
+              <p class="cert-meta">Completed: November 2024</p>
+              <p class="cert-description">
+                Government-recognized vocational certification through National Skill Development Corporation (NSDC Skill India), mastering computerized financial accounting, Tally operations, and ledger management.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         SKILLS SECTION
+         Demonstrates: CSS Flexbox/Grid, skill categorization, interactive cards
+         ======================================================= -->
+    <section id="skills" class="section-padding section-skills">
+      <div class="container">
+
+        <div class="section-header text-center">
+          <span class="section-tag">Capabilities</span>
+          <h2 class="section-title">Core Skills</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="skills-grid">
+
+          <!-- Skill 1 -->
+          <article class="card skill-card">
+            <div class="skill-card-top">
+              <div class="skill-icon-box" aria-hidden="true">&#128202;</div>
+              <h3 class="skill-name">Advanced Excel &amp; Data Analytics</h3>
+            </div>
+            <p class="skill-detail">
+              Proficient in structured data analysis, formula modeling, pivot tables, business reporting, and extracting actionable commercial insights.
+            </p>
+            <div class="skill-tags">
+              <span class="skill-tag">Data Modeling</span>
+              <span class="skill-tag">Formulas &amp; Functions</span>
+              <span class="skill-tag">Business Analytics</span>
+            </div>
+          </article>
+
+          <!-- Skill 2 -->
+          <article class="card skill-card">
+            <div class="skill-card-top">
+              <div class="skill-icon-box" aria-hidden="true">&#129534;</div>
+              <h3 class="skill-name">Tally &amp; Financial Accounting</h3>
+            </div>
+            <p class="skill-detail">
+              Certified Grade A accounts executive with hands-on command over computerized accounting, ledger maintenance, financial entries, and balance reporting.
+            </p>
+            <div class="skill-tags">
+              <span class="skill-tag">Tally ERP/Prime</span>
+              <span class="skill-tag">Bookkeeping</span>
+              <span class="skill-tag">Financial Accounting</span>
+            </div>
+          </article>
+
+          <!-- Skill 3 -->
+          <article class="card skill-card">
+            <div class="skill-card-top">
+              <div class="skill-icon-box" aria-hidden="true">&#129309;</div>
+              <h3 class="skill-name">Customer &amp; Dealer Interaction</h3>
+            </div>
+            <p class="skill-detail">
+              Strong interpersonal communication, relationship management, customer satisfaction, and trade liaison capabilities tested at national trade forums.
+            </p>
+            <div class="skill-tags">
+              <span class="skill-tag">Relationship Management</span>
+              <span class="skill-tag">B2B Communication</span>
+              <span class="skill-tag">Client Engagement</span>
+            </div>
+          </article>
+
+          <!-- Skill 4 -->
+          <article class="card skill-card">
+            <div class="skill-card-top">
+              <div class="skill-icon-box" aria-hidden="true">&#9881;</div>
+              <h3 class="skill-name">Business Operations &amp; Strategy</h3>
+            </div>
+            <p class="skill-detail">
+              Fundamental understanding of commercial business workflows, trade event coordination, startup dynamics, and market entry strategies.
+            </p>
+            <div class="skill-tags">
+              <span class="skill-tag">Commercial Operations</span>
+              <span class="skill-tag">Startup Strategy</span>
+              <span class="skill-tag">Trade Networking</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================
+         CONTACT SECTION
+         Demonstrates: Contact cards, direct communication links, semantic <address>
+         ======================================================= -->
+    <section id="contact" class="section-padding section-contact">
+      <div class="container">
+
+        <div class="section-header text-center">
+          <span class="section-tag">Reach Out</span>
+          <h2 class="section-title">Contact &amp; Connect</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-card-wrapper">
+          <div class="card contact-main-card">
+            
+            <div class="contact-intro">
+              <h3 class="contact-heading">Let&rsquo;s Connect &amp; Collaborate</h3>
+              <p class="contact-subheading">
+                Whether you are interested in discussing business ideas, academic initiatives, or entrepreneurial projects, feel free to reach out directly through any of the channels below.
+              </p>
+            </div>
+
+            <address class="contact-items-grid">
+              
+              <!-- Email Card -->
+              <a href="mailto:meetagrawal973@gmail.com?subject=Curious%20people%2C%20let's%20talk" class="contact-channel-card" aria-label="Send email to Meet Agarwal">
+                <div class="channel-icon-circle" aria-hidden="true">&#9993;</div>
+                <div class="channel-details">
+                  <span class="channel-type">Email Address</span>
+                  <strong class="channel-value">meetagrawal973@gmail.com</strong>
+                </div>
+              </a>
+
+              <!-- Phone Card -->
+              <a href="tel:7850992709" class="contact-channel-card" aria-label="Call Meet Agarwal">
+                <div class="channel-icon-circle" aria-hidden="true">&#9742;</div>
+                <div class="channel-details">
+                  <span class="channel-type">Phone Number</span>
+                  <strong class="channel-value">+91 7850992709</strong>
+                </div>
+              </a>
+
+              <!-- Location Card -->
+              <div class="contact-channel-card">
+                <div class="channel-icon-circle" aria-hidden="true">&#128205;</div>
+                <div class="channel-details">
+                  <span class="channel-type">Location</span>
+                  <strong class="channel-value">Jaipur, Rajasthan, India</strong>
+                </div>
+              </div>
+
+              <!-- Institution Card -->
+              <div class="contact-channel-card">
+                <div class="channel-icon-circle" aria-hidden="true">&#127979;</div>
+                <div class="channel-details">
+                  <span class="channel-type">Institution</span>
+                  <strong class="channel-value">IIM Bangalore (IIMB)</strong>
+                </div>
+              </div>
+
+            </address>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       Demonstrates: semantic <footer>, ID selector #site-footer,
+       neatly displays required Roll Number: IIMBDBE2673600
+       ========================================================= -->
+  <footer id="site-footer">
+    <div class="container footer-container">
+      
+      <!-- Top Footer Row: Branding & Roll Number -->
+      <div class="footer-top-row">
+        
+        <div class="footer-brand">
+          <div class="footer-brand-logo">
+            <span class="footer-monogram">MA</span>
+            <span class="footer-name">Meet Agarwal</span>
+          </div>
+          <p class="footer-bio">
+            Undergraduate in Digital Business &amp; Entrepreneurship &bull; Indian Institute of Management, Bangalore
+          </p>
+        </div>
+
+        <!-- Required College Roll Number Highlight -->
+        <div id="roll-number-container" class="roll-number-box">
+          <span class="roll-number-label">Student Roll Number</span>
+          <span class="roll-number-code">IIMBDBE2673600</span>
+        </div>
+
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <!-- Bottom Footer Row: Navigation & Copyright -->
+      <div class="footer-bottom-row">
+        
+        <p class="footer-copyright">
+          &copy; 2026 Meet Agarwal &bull; BBA in Digital Business &amp; Entrepreneurship, IIM Bangalore.
+        </p>
+
+        <div class="footer-links">
+          <a href="#hero" class="back-to-top-link" aria-label="Back to top of page">Back to Top &uarr;</a>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
